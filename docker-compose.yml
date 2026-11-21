@@ -7,6 +7,8 @@ services:
       - "${API_PORT:-8000}:8000"
     environment:
       DB_PATH: /data/leases.db
+      # Seeds the legacy/no-VLAN scope on a fresh DB only. Per-VLAN pools are
+      # configured at runtime with PUT /v1/pool?vlan=N.
       DEFAULT_POOL_CIDR: "${DEFAULT_POOL_CIDR:-10.20.0.0/24}"
       DEFAULT_TTL_SECONDS: "${DEFAULT_TTL_SECONDS:-3600}"
       MIN_TTL_SECONDS: "${MIN_TTL_SECONDS:-60}"
